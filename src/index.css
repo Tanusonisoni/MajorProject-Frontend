@@ -1,0 +1,15 @@
+html {
+  overflow-y: auto;
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto !important;
+}
+
+#root {
+  min-height: 100vh;
+  height: auto !important;
+  overflow: visible !important;
+}
