@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import "./landingPage.css";
 import bgImage from "../../assets/img.png";
 
-function LandingPage({ onComplete }) {
+function LandingPage({ onComplete = () => {} }) {
   const navigate = useNavigate();
   const [typedText, setTypedText] = useState("");
   const [isLeaving, setIsLeaving] = useState(false);

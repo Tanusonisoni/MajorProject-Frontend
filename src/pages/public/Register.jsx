@@ -39,8 +39,8 @@ function Register() {
   return;
 }
 
-if (password.length < 8) {
-  toast.error("Password must be at least 8 characters.");
+if (password.length < 6) {
+  toast.error("Password must be at least 6 characters.");
   return;
 }
 
@@ -91,6 +91,8 @@ if (password !== confirmPassword) {
                 <p className="mb-5 mt-1 text-center text-sm text-[#26352D]">
                     Small steps. Big impact.
                 </p>
+
+                {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-700" role="alert">{error}</p>}
 
                 <form onSubmit={handleSubmit} className="space-y-3.5">
                     <div>
@@ -153,7 +155,7 @@ if (password !== confirmPassword) {
                                 className="w-full rounded-lg border border-[#E0E5E2] bg-[#FAFBFA] px-3.5 py-2.5 pr-14 text-sm text-[#26352D] outline-none transition placeholder:text-[#969DA0] focus:border-[#7864A8] focus:bg-white focus:ring-2 focus:ring-[#7864A8]/15"
                             />
                             <p className="mt-1 text-xs text-gray-500">
-                                Password must be at least 5 characters.
+                                Password must be at least 6 characters.
                             </p>
                             <button
                                 type="button"

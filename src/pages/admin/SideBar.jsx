@@ -1,4 +1,5 @@
 
+import { createElement } from "react";
 import {
   FiHome,
   FiBookOpen,
@@ -51,7 +52,7 @@ export default function AdminSidebar({
                 : "text-emerald-100 hover:bg-white/10 hover:text-white"
             }`}
           >
-            <Icon size={20} className="shrink-0" />
+            {createElement(Icon, { size: 20, className: "shrink-0" })}
             <span>{name}</span>
           </button>
         ))}

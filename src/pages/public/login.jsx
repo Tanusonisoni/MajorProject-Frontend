@@ -1,6 +1,7 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { loginApi } from "../../services.jsx/adminApi.js";
 
 function Login() {
@@ -21,21 +22,26 @@ const handleSubmit = async (e) => {
 
     if (!result) return;
 
-    // Backend accessToken return karta hai
     const token = result.accessToken;
 
     if (!token) {
-      console.error("Access token missing in login response");
+      toast.error("The server did not return an access token.");
       return;
     }
 
     localStorage.setItem("token", token);
+    localStorage.setItem("role", result.role);
+    localStorage.setItem("userName", result.name || "");
+    localStorage.setItem("userId", result._id || "");
 
-    // Role ke according redirect
     if (result.role === "admin") {
-      navigate("/adminDashboard");
+      navigate("/admin/dashboard", { replace: true });
+    } else if (result.role === "student") {
+      navigate("/student/dashboard", { replace: true });
     } else {
-      navigate("/");
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      toast.error("This account does not have a supported EcoQuest role.");
     }
   } finally {
     setLoading(false);
@@ -99,12 +105,6 @@ const handleSubmit = async (e) => {
                 {showPassword ? "Hide" : "Show"}
               </button>
             </div>
-          </div>
-
-          <div className="flex justify-end">
-            <Link to="/forgot-password" className="text-xs font-semibold text-[#176B50] hover:underline">
-              Forgot password?
-            </Link>
           </div>
 
           <button
